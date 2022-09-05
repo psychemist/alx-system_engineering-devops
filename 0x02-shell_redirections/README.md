@@ -1,1 +1,1 @@
-My Shell: I/O Redirection and Filters project task files
+Shell: I/O Redirection and Filters project task files
