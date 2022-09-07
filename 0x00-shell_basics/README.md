@@ -8,9 +8,9 @@ This is the repository containing my ALX SE Shell Basics project directory.
 - Shell Navigation
 - File Manipulation
 - Symbolic links
-- Command References
+- Command References & Guides
 
-### Shell commands
+### Shell Commands
 ```
 cd
 ls
