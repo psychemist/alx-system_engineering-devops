@@ -1,5 +1,5 @@
 # Shell Init Files, Variables and Expansions
-This is the repository containing my ALX SE Shell Init files, Variables and Expansions project project task files.
+This is the repository containing my ALX SE Shell Init files, Variables and Expansions project task files.
 
 ## Lessons Learned
 - Shell Initilization
