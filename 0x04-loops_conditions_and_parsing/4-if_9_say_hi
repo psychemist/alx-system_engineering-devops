@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# displays Best School 10 times
+# displays Best School 10 times and Hi on the 9th iteration
 
 string="Best School"
 i=1
