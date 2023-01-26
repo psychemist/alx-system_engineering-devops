@@ -4,6 +4,6 @@
 list=$(ls ./)
 for i in $list
 do
-    newname="$(ls "$i" | cut -f 2- -d "-")"
+    newname="$(find "$i" | cut -f 2- -d "-")"
     echo "$newname"
 done
