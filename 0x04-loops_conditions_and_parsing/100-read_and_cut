@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# displays only these fields from the content of the file /etc/passwd:
+#+ - username
+#+ - user id
+#+ - home directory path
+
+while read line
+do
+    echo ${line}
+done < /etc/passwd | cut --field=1,3,6 -d ":"
