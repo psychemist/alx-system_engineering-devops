@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
-# displays only these fields from the content of the file /etc/passwd:
-#+ - username
-#+ - user id
-#+ - home directory path
+# this script displays the content of the file /etc/passwd
+#+ only displays the username, user id, and home directory path fields
 
 while read -r line
 do
