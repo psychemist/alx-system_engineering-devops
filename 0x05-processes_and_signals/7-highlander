@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# displays "To infinity and beyond" indefinitely
+# and ignores a SIGTERM signal
+while ((1))
+do
+    echo "To infinity and beyond"
+    sleep 2
+    trap 'echo "I am invincible!!!"' TERM
+done
