@@ -12,6 +12,5 @@ do
     echo "To infinity and beyond"
     sleep 2
     trap 'echo "Y U no love me?!"' SIGINT
-    trap 'echo "I hate the kill command"' SIGTERM
-    trap 'kill $$; rm /var/run/myscript.pid' SIGQUIT SIGTERM
+    trap 'rm /var/run/myscript.pid; echo "I hate the kill command"; kill $$S' SIGQUIT SIGTERM
 done
