@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 # stops 4-to_infinity_and_beyond process
 # shellcheck disable=SC2009
-ps -ef | grep 4-to_infinity_and_beyond | awk '{print $2}' | while read -r pid
+ps -ef | grep 4-to_infinity | cut -d " " -f2 | while read -r pid
 do
     kill "$pid"
     break
 done
+
+#ps -ef | grep 4-to_infinity_and_beyond | awk '{print $2}'
