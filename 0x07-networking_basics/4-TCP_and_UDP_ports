@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-ss -tunlp
+# displays listening ports and shows:
+#+ listening sockets and the PID and name of the program of each socket
+sudo netstat -tunlp
