@@ -11,6 +11,3 @@ sed -i s/127.*$/127.0.0.2\\tlocalhost\\n8.8.8.8\\tfacebook.com/g hosts.bak
 
 # Copy the contents of new file to hosts file
 cp -f hosts.bak /etc/hosts
-
-# Verify the changes
-cat /etc/hosts
