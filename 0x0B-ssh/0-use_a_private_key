@@ -2,4 +2,3 @@
 # Connect to server using ssh private key ~/.ssh/school with user ubuntu
 
 ssh-copy-id -i ~/.ssh/school.pub ubuntu@54.208.175.209 
-ssh ubuntu@54.208.175.209
