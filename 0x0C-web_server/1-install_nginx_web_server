@@ -10,8 +10,8 @@
 # As an answer file, write a Bash script that configures a new Ubuntu machine
 #+ to respect above requirements (this script will be run on the server itself)
 
-apt-get update
-apt-get -y install nginx
-ufw allow 'Nginx HTTP'
-echo "Hello World!" > var/www/html/index.html
-service nginx start
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+echo "Hello World!" | sudo tee var/www/html/index.html
+sudo service nginx start
