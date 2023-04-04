@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# installs an nginx web server that returns a customized HTTP GET response
+# redirects "server/redirect_me" to another page
+# generates a custom 404 page that contains a custom string
+
+redirect_string="server_name _;\n\n\tlocation \/redirect_me {\n\t\treturn 301 https:\/\/google.com;\n\t}\n"
+error_string="server_name _;\n\n\terror_page 404 \/404.html;\n\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}\n"
+
+# install nginx
+sudo apt-get update
+sudo apt-get -y install nginx
+
+# configure domain root page
+echo "Hello World!" > /var/www/html/index.html
+
+# redirect 301 response
+sudo sed -i "s/server_name _;/$redirect_string/" /etc/nginx/sites-available/default
+
+# redirect 404 error
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+sudo sed -i "s/server_name _;/$error_string/" /etc/nginx/sites-available/default
+
+# restart server
+sudo service nginx start
