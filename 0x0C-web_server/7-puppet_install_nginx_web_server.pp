@@ -1,4 +1,4 @@
-# Script to install nginx using puppet
+# installs nginx on a new server using puppet
 
 package { 'nginx':
   ensure => 'present',
@@ -15,7 +15,7 @@ exec { 'hello world':
 }
 
 exec { 'redirect':
-  command  => 'sudo sed -i "s/server_name _;/server_name _;\\n\\n\\tlocation \/redirect_me {\\n\\t\\treturn 301 https:\/\/google.com;\\n\\t}/" /etc/nginx/sites-available/default',
+  command  => 'sudo sed -i "s/server_name _;/server_name _;\\n\\n\\tlocation \/redirect_me {\\n\\t\\treturn 301 https:\/\/google.com;\\n\\t}\\n/" /etc/nginx/sites-available/default',
   provider => shell,
 }
 
