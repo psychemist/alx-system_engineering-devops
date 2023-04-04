@@ -1,24 +1,25 @@
-# installs and configures an nginx server using puppet
-
-exec { 'update':
-  command => '/usr/bin/apt-get update'
-  before  => Package['nginx']
-}
+# Script to install nginx using puppet
 
 package { 'nginx':
-  ensure  => 'installed',
-  require => Exec['update']
+  ensure => 'present',
 }
 
-exec { 'root':
-  command => 'echo "Hello World!" | sudo tee /var/www/html/index.html',
-  
+exec { 'update and install':
+  command  => 'sudo apt-get update ; sudo apt-get -y install nginx',
+  provider => shell,
+}
+
+exec { 'hello world':
+  command  => 'echo "Hello World!" | sudo tee /var/www/html/index.html',
+  provider => shell,
 }
 
 exec { 'redirect':
-  command => 'sudo sed -i "s/server_name _;/server_name _;\\n\\n\\tlocation \/redirect_me {\\n\\t\\treturn 301 https:\/\/google.com;\\n\\t}\\n/" /etc/nginx/sites-available/default'
+  command  => 'sudo sed -i "s/server_name _;/server_name _;\\n\\n\\tlocation \/redirect_me {\\n\\t\\treturn 301 https:\/\/google.com;\\n\\t}/" /etc/nginx/sites-available/default',
+  provider => shell,
+}
 
 exec { 'start':
-  command => 'sudo service nginx restart'
-  require Package['nginx']
+  command  => 'sudo service nginx restart',
+  provider => shell,
 }
