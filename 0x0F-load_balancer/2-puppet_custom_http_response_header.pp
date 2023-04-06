@@ -8,9 +8,10 @@ package { 'nginx':
   ensure => 'present',
 }
 
-exec { 'add_header':
-  command  => 'sudo sed -i "s/server_name _;/server_name _;\\n\\n\\t add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default'
-  provider => shell,
+file_line { 'add_header':
+  path  => '/etc/nginx/nginx.conf',
+  match => 'http {',
+  line  => "http {\n\tadd_header X-Served-By \"${hostname}\";",
 }
 
 exec { 'start':
