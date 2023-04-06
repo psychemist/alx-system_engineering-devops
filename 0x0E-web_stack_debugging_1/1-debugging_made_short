@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# refactor 0-nginx_likes_port_80 script
+sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
+service nginx restart
+pkill -o nginx
