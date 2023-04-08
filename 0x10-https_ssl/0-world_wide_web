@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# accepts domain name as argument and displays information about its subdomains
+# shellcheck disable=SC2086
+check_domain () {
+    printf "The subdomain %s is a " "$2"
+    dig "$2.$1" | grep -A1 'ANSWER SECTION:' | awk -F' ' '{ printf $4 }'
+    printf " record and points to "
+    dig "$2.$1" | grep -A1 'ANSWER SECTION:' | awk -F' ' '{ printf $5 }'
+    echo
+}
+
+if [ -z "$1" ]
+then
+    echo "Usage: $(basename $0) DOMAIN_NAME [SUB-DOMAIN_NAME]"
+    exit 1
+fi
+
+if [ -z "$2" ]
+then
+    for subdomain in "www" "lb-01" "web-01" "web-02"
+    do
+        check_domain $1 $subdomain
+    done
+else
+    check_domain $1 $2
+fi
