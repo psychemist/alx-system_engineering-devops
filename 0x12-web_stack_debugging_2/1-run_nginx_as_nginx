@@ -1,16 +1,15 @@
 #!/usr/bin/env bash
-# fixes nginx server running on ubuntu container
-#+ to run as user 'nginx' and listen on port 8080
+# fixes nginx server running on ubuntu container to run as user 'nginx' and listen on port 8080
 
 # Update the Nginx configuration file to run as the nginx user
-sed -i 's/#user www-data;/user nginx;/' /etc/nginx/nginx.conf
+sudo sed -i 's/#user www-data;/user nginx;/' /etc/nginx/nginx.conf
 
 # Update the ownership and permssions of the Nginx config files
-chmod 644 /etc/nginx/nginx.conf
+chmod 700 /etc/nginx/nginx.conf
 chown nginx:nginx /etc/nginx/nginx.conf
 
 # Make Nginx listen on all active IPs on port 8080
-sed -i 's/80/8080/g' /etc/nginx/sites-available/default
+sudo sed -i 's/80 default_server/8080 default_server/' /etc/nginx/sites-available/default
 
 # Kill apache server listening on 8080 and start the Nginx service
 pkill apache2
