@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# fixes nginx server running on ubuntu container
+#+ to run as user 'nginx' and listen on port 8080
+
+# Stop the Nginx service if it's already running as root
+service nginx stop
+
+# Create the nginx user if it doesn't already exist
+if ! id -u nginx >/dev/null 2>&1; then
+    useradd -r -s /usr/sbin/nologin nginx
+fi
+
+# Update the Nginx configuration file to run as the nginx user
+sed -i 's/user www-data;/user nginx;/' /etc/nginx/nginx.conf
+
+# Update the ownership of the Nginx files to the nginx user
+chown -R nginx:nginx /var/lib/nginx
+
+# make nginx listen on all active IPs on port 8080
+sed -i 's/80/8080/g' /etc/nginx/sites-available/default
+
+# Start the Nginx service
+service nginx start
