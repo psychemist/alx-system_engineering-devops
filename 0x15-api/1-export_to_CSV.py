@@ -18,10 +18,15 @@ if __name__ == "__main__":
     tasks = []
 
     for todo in todos.json():
-        task = (u_id, u_name, todo.get('completed'), todo.get('title'))
-        tasks.append(task)
+        tasks.append((todo.get('completed'), todo.get('title')))
 
-    with open(str(u_id + 1) + '.csv', 'w') as f:
+    with open(str(u_id) + '.csv', 'w') as f:
+        fieldnames = ["USER_ID", "USERNAME",
+                      "TASK_COMPLETED_STATUS", "TASK_TITLE"]
+
         for task in tasks:
-            writer = csv.writer(f, quoting=csv.QUOTE_ALL)
-            writer.writerow(task)
+            writer = csv.DictWriter(f, fieldnames=fieldnames,
+                                    quoting=csv.QUOTE_ALL)
+            writer.writerow({"USER_ID": u_id, "USERNAME": u_name,
+                         "TASK_COMPLETED_STATUS": task[0],
+                         "TASK_TITLE": task[1]})
