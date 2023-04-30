@@ -28,5 +28,5 @@ if __name__ == "__main__":
             writer = csv.DictWriter(f, fieldnames=fieldnames,
                                     quoting=csv.QUOTE_ALL)
             writer.writerow({"USER_ID": u_id, "USERNAME": u_name,
-                         "TASK_COMPLETED_STATUS": task[0],
-                         "TASK_TITLE": task[1]})
+                             "TASK_COMPLETED_STATUS": task[0],
+                             "TASK_TITLE": task[1]})
