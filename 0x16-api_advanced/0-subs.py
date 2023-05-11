@@ -1,22 +1,28 @@
-"""Queries redit api and returns blanc sjdkvbd jk
+#!/usr/bin/python3
+"""Module 0-subs queries the Reddit API and returns the number of
+subscribers (not active users, total subscribers) of a given subreddit
 """
 import requests
 
+
 def number_of_subscribers(subreddit):
-    """Queries API and returns number of subscribers
+    """Queries the Reddit API by subreddit
+
     Args:
-        subreddit (str): subreddit to be queried
+        subreddit (str): Reddit subreddit to be queried
 
     Returns:
-        int: number of subs
-        """
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    headers = {'User-agent': 'Mozilla/5.0'}  # Add a user-agent header to prevent 429 error
+        int: number of subscribers (SUCCESS) or 0 (FAIL)
+    """
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    headers = {"User-Agent": "Mozilla/5.0"}
 
     try:
-        response = requests.get(url, headers=headers)
-        data = response.json()
-        subscribers = data['data']['subscribers']
-        return subscribers
+        res = requests.get(url, headers=headers)
+        data = res.json()
+        count = data.get('data').get('subscribers')
     except (requests.RequestException, KeyError):
-        return 0
+        if count == None:
+            count = 0
+    finally:
+        return count
