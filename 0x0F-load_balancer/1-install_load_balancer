@@ -13,8 +13,8 @@ frontend www
 
 backend web_servers
         balance roundrobin
-        server 58381-web-01 54.152.106.255:80 check
-        server 58381-web-02 100.25.181.181:80 check
+        server 58381-web-01 52.204.195.22:80 check
+        server 58381-web-02 3.83.238.160:80 check
 "
 
 # prepare environment and start installation
