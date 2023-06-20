@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# reload Gunicorn in a graceful way
 
 # Find the PID of the Gunicorn master process
 pid=$(pgrep gunicorn)
