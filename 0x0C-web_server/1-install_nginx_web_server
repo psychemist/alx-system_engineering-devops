@@ -7,8 +7,6 @@
 # You can’t use systemctl for restarting nginx
 # When querying Nginx at its root / with a GET request (requesting a page)
 #+ using curl, it must return a page that contains the string Hello World!
-# As an answer file, write a Bash script that configures a new Ubuntu machine
-#+ to respect above requirements (this script will be run on the server itself)
 
 sudo apt-get update
 sudo apt-get -y install nginx
