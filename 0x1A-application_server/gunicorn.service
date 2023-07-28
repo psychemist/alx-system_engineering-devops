@@ -1,13 +1,15 @@
 [Unit]
-Description=Gunicorn application server running AirBnB_clone_v4
+Description=Gunicorn application server daemon
 Author=Agu Obunadike
+After=network.target
 
 [Service]
-ExecStart=/home/ubuntu/.local/bin/gunicorn --workers 3 --bind 0.0.0.0:5003 web_dynamic.2-hbnb:app
-Restart=always
 User=ubuntu
 Group=www-data
 WorkingDirectory=/home/ubuntu/AirBnB_clone_v4
+ExecStart=/home/ubuntu/.local/bin/gunicorn --bind 0.0.0.0:5003 --workers=3 --error-logfile /tmp/airbnb-error.log --access-logfile /tmp/airbnb-access.log web_dynamic.2-hbnb:app
+ExecStop=/bin/pkill gunicorn
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
