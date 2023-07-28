@@ -1,6 +1,5 @@
 [Unit]
 Description=Gunicorn application server daemon
-Author=Agu Obunadike
 After=network.target
 
 [Service]
